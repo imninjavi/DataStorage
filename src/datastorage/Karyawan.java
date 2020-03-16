@@ -87,6 +87,11 @@ public class Karyawan extends javax.swing.JFrame {
         cbJabatan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Direktur", "Manajer", "Anggota" }));
 
         btnBaru.setText("Baru");
+        btnBaru.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBaruActionPerformed(evt);
+            }
+        });
 
         btnHapus.setText("Hapus");
         btnHapus.setEnabled(false);
@@ -198,6 +203,23 @@ public class Karyawan extends javax.swing.JFrame {
         disableTable = true;
         modeInsert = false;
     }//GEN-LAST:event_btnUbahActionPerformed
+
+    private void btnBaruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBaruActionPerformed
+        // TODO add your handling code here:
+        btnSimpan.setEnabled(true);
+        btnBatal.setEnabled(true);
+        txtNama.setEnabled(true);
+        cbJabatan.setEnabled(true);
+        btnBaru.setEnabled(false);
+        btnUbah.setEnabled(false);
+        btnHapus.setEnabled(false);
+        tbKaryawan.setEnabled(false);
+        disableTable = true;
+        
+        txtNama.setText("");
+        cbJabatan.setSelectedIndex(0);
+        modeInsert = true;
+    }//GEN-LAST:event_btnBaruActionPerformed
 
     /**
      * @param args the command line arguments
