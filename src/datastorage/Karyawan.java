@@ -77,7 +77,7 @@ public class Karyawan extends javax.swing.JFrame {
 
         lbNama.setText("Nama");
 
-        txtNama.setEnabled(false);
+        txtNama.setEditable(false);
         txtNama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNamaActionPerformed(evt);
@@ -114,6 +114,11 @@ public class Karyawan extends javax.swing.JFrame {
 
         btnSimpan.setText("Simpan");
         btnSimpan.setEnabled(false);
+        btnSimpan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSimpanActionPerformed(evt);
+            }
+        });
 
         btnBatal.setText("Batal");
         btnBatal.setEnabled(false);
@@ -271,6 +276,42 @@ public class Karyawan extends javax.swing.JFrame {
         tbKaryawan.setEnabled(true);
         disableTable = false;
     }//GEN-LAST:event_btnBatalActionPerformed
+
+    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
+        // TODO add your handling code here:
+        disableTable = false;
+        try {
+            Statement stmt = conn.createStatement();
+            if(modeInsert == false) {
+                stmt.executeUpdate("UPDATE karyawan set "
+                + "nm_karyawan='" + txtNama.getText() + "', "
+                + "jab_karyawan='" + cbJabatan.getSelectedItem() + "' "
+                + "WHERE id_karyawan='" + selectedID + "'");
+                
+                JOptionPane.showMessageDialog(null, "Update Berhasil");
+                modeInsert = true;
+            } else {
+                stmt.executeUpdate("INSERT INTO karyawan('nm_karyawan','jab_karyawan') VALUES("
+                + "'" + txtNama.getText() + "', "
+                + "'" + cbJabatan.getSelectedItem() + "') ");
+                
+                JOptionPane.showMessageDialog(null, "Insert Berhasil");
+            }
+            
+            loadTabelKaryawan();
+            btnSimpan.setEnabled(false);
+            btnBatal.setEnabled(false);
+            txtNama.setEditable(false);
+            cbJabatan.setEnabled(false);
+            btnBaru.setEnabled(true);
+            btnUbah.setEnabled(true);
+            btnHapus.setEnabled(true);
+            tbKaryawan.setEnabled(true);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnSimpanActionPerformed
 
     /**
      * @param args the command line arguments
