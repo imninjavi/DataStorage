@@ -93,10 +93,17 @@ public class Karyawan extends javax.swing.JFrame {
 
         btnUbah.setText("Ubah");
         btnUbah.setEnabled(false);
+        btnUbah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUbahActionPerformed(evt);
+            }
+        });
 
         btnSimpan.setText("Simpan");
+        btnSimpan.setEnabled(false);
 
         btnBatal.setText("Batal");
+        btnBatal.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -176,6 +183,21 @@ public class Karyawan extends javax.swing.JFrame {
             cbJabatan.setSelectedItem(tbKaryawan.getValueAt(tbKaryawan.getSelectedRow(), 2).toString());
         }
     }//GEN-LAST:event_tbKaryawanMouseClicked
+
+    boolean modeInsert = true;
+    private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
+        // TODO add your handling code here:
+        btnSimpan.setEnabled(true);
+        btnBatal.setEnabled(true);
+        txtNama.setEnabled(true);
+        cbJabatan.setEnabled(true);
+        btnBaru.setEnabled(false);
+        btnUbah.setEnabled(false);
+        btnHapus.setEnabled(false);
+        tbKaryawan.setEnabled(false);
+        disableTable = true;
+        modeInsert = false;
+    }//GEN-LAST:event_btnUbahActionPerformed
 
     /**
      * @param args the command line arguments
