@@ -473,7 +473,10 @@ public class Karyawan extends javax.swing.JFrame {
     }
     
     public void loadTabelKaryawan(String teks) {
-        String sql = "SELECT * FROM karyawan WHERE nm_karyawan like '%" + teks + "%'";
+        String sql = "SELECT * FROM karyawan WHERE nm_karyawan like '%" + teks + "%' OR "
+                + "jab_karyawan='" + teks + "' OR "
+                + "jenis_kelamin like '" + teks + "%' OR "
+                + "telp like '%" + teks + "%'";
         Object[] kolom = {"ID", "Nama", "Jabatan", "Jenis Kelamin", "No. Telp"};
         DefaultTableModel dataModel = new DefaultTableModel(null, kolom);
         tbKaryawan.setModel(dataModel);
