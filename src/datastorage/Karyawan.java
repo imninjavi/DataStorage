@@ -77,6 +77,7 @@ public class Karyawan extends javax.swing.JFrame {
 
         lbNama.setText("Nama");
 
+        txtNama.setEnabled(false);
         txtNama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNamaActionPerformed(evt);
@@ -86,6 +87,7 @@ public class Karyawan extends javax.swing.JFrame {
         lbJabatan.setText("Jabatan");
 
         cbJabatan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Direktur", "Manajer", "Anggota" }));
+        cbJabatan.setEnabled(false);
 
         btnBaru.setText("Baru");
         btnBaru.addActionListener(new java.awt.event.ActionListener() {
@@ -115,6 +117,11 @@ public class Karyawan extends javax.swing.JFrame {
 
         btnBatal.setText("Batal");
         btnBatal.setEnabled(false);
+        btnBatal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBatalActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -200,7 +207,7 @@ public class Karyawan extends javax.swing.JFrame {
         // TODO add your handling code here:
         btnSimpan.setEnabled(true);
         btnBatal.setEnabled(true);
-        txtNama.setEnabled(true);
+        txtNama.setEditable(true);
         cbJabatan.setEnabled(true);
         btnBaru.setEnabled(false);
         btnUbah.setEnabled(false);
@@ -214,7 +221,7 @@ public class Karyawan extends javax.swing.JFrame {
         // TODO add your handling code here:
         btnSimpan.setEnabled(true);
         btnBatal.setEnabled(true);
-        txtNama.setEnabled(true);
+        txtNama.setEditable(true);
         cbJabatan.setEnabled(true);
         btnBaru.setEnabled(false);
         btnUbah.setEnabled(false);
@@ -251,6 +258,19 @@ public class Karyawan extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnHapusActionPerformed
+
+    private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
+        // TODO add your handling code here:
+        btnSimpan.setEnabled(false);
+        btnBatal.setEnabled(false);
+        txtNama.setEditable(false);
+        cbJabatan.setEnabled(false);
+        btnBaru.setEnabled(true);
+        btnUbah.setEnabled(true);
+        btnHapus.setEnabled(true);
+        tbKaryawan.setEnabled(true);
+        disableTable = false;
+    }//GEN-LAST:event_btnBatalActionPerformed
 
     /**
      * @param args the command line arguments
