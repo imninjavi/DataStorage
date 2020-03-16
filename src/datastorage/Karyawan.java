@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -95,6 +96,11 @@ public class Karyawan extends javax.swing.JFrame {
 
         btnHapus.setText("Hapus");
         btnHapus.setEnabled(false);
+        btnHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHapusActionPerformed(evt);
+            }
+        });
 
         btnUbah.setText("Ubah");
         btnUbah.setEnabled(false);
@@ -220,6 +226,31 @@ public class Karyawan extends javax.swing.JFrame {
         cbJabatan.setSelectedIndex(0);
         modeInsert = true;
     }//GEN-LAST:event_btnBaruActionPerformed
+
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+        // TODO add your handling code here:
+        String[] options = {"Ya", "Tidak"};
+        int response = JOptionPane.showOptionDialog(
+                this, "Anda akan menghapus data " + txtNama.getText(), "Peringatan",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null, //custom icon
+                options, // button
+                options[0] // default button
+                );
+        if(response == JOptionPane.YES_OPTION) {
+            try {
+                Statement stmt = conn.createStatement();
+                stmt.executeUpdate("DELETE FROM karyawan WHERE id_karyawan='" + selectedID + "'");
+                txtNama.setText("");
+                cbJabatan.setSelectedIndex(0);
+                loadTabelKaryawan();
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_btnHapusActionPerformed
 
     /**
      * @param args the command line arguments
